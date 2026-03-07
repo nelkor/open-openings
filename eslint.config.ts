@@ -31,13 +31,6 @@ export default defineConfig(
     },
   },
   {
-    // common
-    rules: {
-      'camelcase': 2,
-      'prefer-template': 2,
-    },
-  },
-  {
     // prettier
     rules: {
       'prettier/prettier': 2,
@@ -99,6 +92,14 @@ export default defineConfig(
     },
   },
   prettierConfig,
+  {
+    // common
+    rules: {
+      'curly': 2,
+      'camelcase': 2,
+      'prefer-template': 2,
+    },
+  },
   {
     // vue
     files: ['**/*.vue'],
