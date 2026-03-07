@@ -36,7 +36,9 @@ export const getVariationsList = (
 ): SelectorItem[] => {
   const opening = openings.find(({ name }) => kebabize(name) === openingValue)
 
-  if (!opening) throw new Error(`No opening found by value ${openingValue}`)
+  if (!opening) {
+    throw new Error(`No opening found by value ${openingValue}`)
+  }
 
   return [
     mode === 'learn'

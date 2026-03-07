@@ -35,8 +35,11 @@ export const useMainPage = () => {
   watch(selectedOpening, setPrefferedOpening)
 
   watch(variationsList, variations => {
-    if (!variations.map(({ value }) => value).includes(selectedVariation.value))
+    if (
+      !variations.map(({ value }) => value).includes(selectedVariation.value)
+    ) {
       selectedVariation.value = variations[0].value
+    }
   })
 
   return {
