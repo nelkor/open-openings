@@ -6,16 +6,16 @@ interface MoveBase {
 }
 
 // Имя вариации указывается в её финальном ходе.
-interface FinalMove extends MoveBase {
+export interface FinalMove extends MoveBase {
   name: string
 }
 
 // На каждый ход, кроме финального, есть один или более ответов противника.
-interface PassingMove extends MoveBase {
+export interface PassingMove extends MoveBase {
   replies: Record<SAN, Move>
 }
 
-type Move = FinalMove | PassingMove
+export type Move = FinalMove | PassingMove
 
 // Если это дебют за белых — firstMove будет null.
 // Если за чёрных — в firstMove указан первый ход оппонента.
