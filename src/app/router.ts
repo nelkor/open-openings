@@ -14,12 +14,12 @@ export const router = createRouter({
     },
     {
       name: 'learn',
-      path: '/learn',
+      path: '/learn/:opening/:variation',
       component: LearnPage,
     },
     {
       name: 'practice',
-      path: '/practice',
+      path: '/practice/:opening/:variation',
       component: PracticePage,
     },
 

@@ -2,40 +2,7 @@
 import { useRouter } from 'vue-router'
 import { ref, watch, computed } from 'vue'
 
-import { openings } from '@/entities/openings'
-import type { Opening } from '@/entities/openings/types'
-
-interface Variation {
-  name: string
-}
-
-type Move = Opening['tree']['replies'][string]
-
-const isFinal = (move: Move): move is Move & { name: string } => {
-  return 'name' in move
-}
-
-const findVariations = (tree: Opening['tree']): Variation[] => {
-  const result: Variation[] = []
-
-  const walk = (move: Move) => {
-    if (isFinal(move)) {
-      result.push({ name: move.name })
-
-      return
-    }
-
-    for (const key of Object.keys(move.replies)) {
-      walk(move.replies[key])
-    }
-  }
-
-  for (const key of Object.keys(tree.replies)) {
-    walk(tree.replies[key])
-  }
-
-  return result
-}
+import { openings, findVariations } from '@/entities/openings'
 
 const router = useRouter()
 
@@ -70,7 +37,9 @@ watch(selectedOpeningIndex, () => {
 const go = () => {
   if (!canProceed.value) return
 
-  router.push(`/${selectedMode.value}`)
+  router.push(
+    `/${selectedMode.value}/${encodeURIComponent(selectedOpening.value!.name)}/${encodeURIComponent(selectedVariation.value)}`,
+  )
 }
 </script>
 
