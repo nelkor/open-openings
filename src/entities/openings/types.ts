@@ -1,6 +1,6 @@
 type SAN = string // Standard Algebraic Notation
 
-interface MoveBase {
+export interface MoveBase {
   san: SAN
   comment: string[]
 }
@@ -17,8 +17,10 @@ export interface PassingMove extends MoveBase {
 
 export type Move = FinalMove | PassingMove
 
+// Дебют с древовидной структурой всех вариаций.
 // Если это дебют за белых — firstMove будет null.
 // Если за чёрных — в firstMove указан первый ход оппонента.
+// Ходы от начала дерева до первой развилки считаются "Начальной линией" дебюта.
 export interface Opening {
   name: string
   tree: PassingMove
@@ -26,4 +28,11 @@ export interface Opening {
   firstMove: null | SAN
 }
 
-// Ходы от начала дерева до первой развилки считаются "Начальной линией" дебюта.
+// "Плоская" линия дебюта, вычисленная из дерева.
+// Именно по ней играет пользователь.
+export interface OpeningVariation {
+  name: string
+  moves: MoveBase[]
+  openingName: string
+  firstMove: null | SAN
+}
